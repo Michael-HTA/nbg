@@ -17,7 +17,7 @@
             </div>
 
             <div id="dynamicInput" class="flex-grow">
-                <input type="text" id="priceInput" name="price" placeholder="Enter price..."
+                <input type="text" id="priceInput" name="search" placeholder="Enter price..."
                     class="w-44 sm:w-full border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 dark:focus:ring-blue-700 px-3 py-2">
             </div>
 
@@ -49,32 +49,32 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function() {
             const filterSelect = document.getElementById('filter');
             const dynamicInput = document.getElementById('dynamicInput');
             const categories = @json($categories);
 
             filterSelect.addEventListener('change', function() {
-              
+
                 dynamicInput.innerHTML = '';
 
                 if (this.value === 'price') {
-                   
+
                     const priceInput = document.createElement('input');
                     priceInput.type = 'text';
-                    priceInput.name = 'price';
+                    priceInput.name = 'search';
                     priceInput.placeholder = 'Enter price...';
                     priceInput.className =
                         'w-44 sm:w-full border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 dark:focus:ring-blue-700 px-3 py-2';
                     dynamicInput.appendChild(priceInput);
                 } else if (this.value === 'category') {
-                    
+
                     const categorySelect = document.createElement('select');
-                    categorySelect.name = 'category';
+                    categorySelect.name = 'search';
                     categorySelect.className =
                         'w-44 sm:w-full border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 dark:focus:ring-blue-700 px-3 py-2';
 
-                   
+
                     categories.forEach(category => {
                         const option = document.createElement('option');
                         option.value = category.id;
