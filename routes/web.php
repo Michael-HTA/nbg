@@ -14,6 +14,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/products', [ProductController::class, 'index'])->middleware(['auth', 'verified'])->name('products');
+Route::post('/products', [ProductController::class, 'search'])->middleware(['auth', 'verified']);
+Route::get('/products/{id}', [ProductController::class, 'detail'])->middleware(['auth', 'verified'])->name('product.detail');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
