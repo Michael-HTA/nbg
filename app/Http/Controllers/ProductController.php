@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchRequest;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -20,16 +20,18 @@ class ProductController extends Controller
         ]);
     }
 
-    public function search(Request $request)
+    public function search(SearchRequest $request)
     {
         $query = Product::query();
+       
+        if ($request->filter === 'price') {
 
-        if ($request->has('price') && $request->price !== null && $request->price !== '') {
-            $query->where('price', '<=', $request->price);
-        }
+            $query->where('price', '<=', $request->search);
 
-        elseif ($request->has('category') && $request->category !== null && $request->category !== '') {
-            $query->where('category_id', $request->category);
+        }elseif ($request->filter === 'category') {
+
+            $query->where('category_id', $request->search);
+
         }
 
         $products = $query->get();
