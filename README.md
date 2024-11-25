@@ -1,8 +1,9 @@
 ## Getting Started
 
-First, run the development server:
+Plz, run the follwing command:
 
 ```bash
+php artisan migrate --seed
 npm run dev && php artisan serve
 ```
 Confiugre for email verification
